@@ -1,0 +1,81 @@
+
+Title:- Design a distributed application using MapReduce which processes a log
+file of a system. List out the users who have logged for maximum period on the system. Use
+simple log file from the Internet and process it using a pseudo distribution mode on Hadoop platform.
+
+
+student@student-HP-Pro-3330-MT:~$ sudo su hduser
+[sudo] password for student: 
+
+hduser@student-HP-Pro-3330-MT:/home/student$ cd
+
+hduser@student-HP-Pro-3330-MT:~$ pwd /home/hduser
+/home/hduser
+
+hduser@student-HP-Pro-3330-MT:~$ ls
+
+hduser@student-HP-Pro-3330-MT:~$ pwd /home/hduser
+/home/hduser
+hduser@student-HP-Pro-3330-MT:~$ ls
+
+hduser@student-HP-Pro-3330-MT:~$ sudo chown -R hduser analyzelogs/
+
+[sudo] password for hduser: 
+hduser@student-HP-Pro-3330-MT:~$ cd analyzelogs/
+
+hduser@student-HP-Pro-3330-MT:~/analyzelogs$ ls
+
+hduser@student-HP-Pro-3330-MT:~/analyzelogs$ pwd
+
+hduser@student-HP-Pro-3330-MT:~/analyzelogs$ sudo chmod +r *.*
+
+hduser@student-HP-Pro-3330-MT:~/analyzelogs$ pwd
+
+hduser@student-HP-Pro-3330-MT:~/analyzelogs$ export CLASSPATH="$HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-client-core-2.9.0.jar:$HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-client-common-2.9.0.jar:$HADOOP_HOME/share/hadoop/common/hadoop-common-2.9.0.jar:~/analyzelogs/SalesCountry/*:$HADOOP_HOME/lib/*"
+
+hduser@student-HP-Pro-3330-MT:~/analyzelogs$ javac -d . SalesMapper.java SalesCountryReducer.java SalesCountryDriver.java
+
+hduser@student-HP-Pro-3330-MT:~/analyzelogs$ ls
+
+hduser@student-HP-Pro-3330-MT:~/analyzelogs$ cd SalesCountry/
+
+hduser@student-HP-Pro-3330-MT:~/analyzelogs/SalesCountry$ ls
+
+hduser@student-HP-Pro-3330-MT:~/analyzelogs/SalesCountry$ cd ..
+
+hduser@student-HP-Pro-3330-MT:~/analyzelogs$ ls
+
+hduser@student-HP-Pro-3330-MT:~/analyzelogs$ jar -cfm analyzelogs.jar Manifest.txt SalesCountry/*.class
+
+hduser@student-HP-Pro-3330-MT:~/analyzelogs$ cd\
+
+hduser@student-HP-Pro-3330-MT:~/analyzelogs$ cd
+
+hduser@student-HP-Pro-3330-MT:~$ start-dfs.sh
+
+hduser@student-HP-Pro-3330-MT:~$ start-yarn.sh
+
+hduser@student-HP-Pro-3330-MT:~$ jps
+
+hduser@student-HP-Pro-3330-MT:~$ cd analyzelogs/
+
+hduser@student-HP-Pro-3330-MT:~/analyzelogs$ sudo mkdir ~/input2000
+
+hduser@student-HP-Pro-3330-MT:~/analyzelogs$ sudo cp access_log_short.csv ~/input2000
+
+hduser@student-HP-Pro-3330-MT:~/analyzelogs$ $HADOOP_HOME/bin/hdfs -put
+
+hduser@student-HP-Pro-3330-MT:~/analyzelogs$ ~/input2000 /
+
+hduser@student-HP-Pro-3330-MT:~/analyzelogs$ $HADOOP_HOME/bin/hadoop jar
+
+hduser@student-HP-Pro-3330-MT:~/analyzelogs$ $HADOOP_HOME/bin/hadoop jar analyzelogs.jar /input2000 /output2000
+
+
+
+hduser@student-HP-Pro-3330-MT:~/analyzelogs$ $HADOOP_HOME/bin/hdfs dfs -cat/output2000/part-00000
+-cat/output2000/part-00000: Unknown 
+
+
+hduser@student-HP-Pro-3330-MT:~/analyzelogs$ cd
+hduser@student-HP-Pro-3330-MT:~$ stop-all.sh
