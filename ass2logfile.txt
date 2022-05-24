@@ -43,6 +43,8 @@ hduser@student-HP-Pro-3330-MT:~/analyzelogs/SalesCountry$ ls
 
 hduser@student-HP-Pro-3330-MT:~/analyzelogs/SalesCountry$ cd ..
 
+hduser@student-HP-Pro-3330-MT:~/analyzelogs$ sudo gedit Manifest.txt
+
 hduser@student-HP-Pro-3330-MT:~/analyzelogs$ ls
 
 hduser@student-HP-Pro-3330-MT:~/analyzelogs$ jar -cfm analyzelogs.jar Manifest.txt SalesCountry/*.class
